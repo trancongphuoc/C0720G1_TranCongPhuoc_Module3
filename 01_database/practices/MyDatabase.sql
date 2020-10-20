@@ -24,3 +24,5 @@ PaymentType varchar(20),
 CustomerId varchar(50),
 EmployeeId varchar(50)
 );
+
+insert into products values(1,'Phuoc','abc',500,200,100,1,1,'abcc');
