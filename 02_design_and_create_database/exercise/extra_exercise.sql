@@ -50,21 +50,28 @@ constraint fk_supplier_product foreign key (id_supplier) references suppliers (i
 description varchar(5000) not null
 );
 
-
 Create table orders(
 id_order int primary key auto_increment,
-created_date datetime not null,	 -- check (shipped_date >= created_date),
-shipped_date datetime, 	--  check (shipped_date >= created_date),
-status_order varchar(50) default 'waiting' check (status_order = 'wating' or  'completed' or 'canceled'),
+created_date datetime default(CURRENT_DATE()),
+shipped_date datetime,
+status_order varchar(50) default 'waiting',
 description varchar(5000),
 shipping_address varchar(500) not null,
 shipping_city varchar(50) not null,
-payment_type varchar(20) default 'cash' check (payment_type = 'cash' or 'credit card'),
+payment_type varchar(20) default 'cash',
 id_customer varchar(50),
 id_employee varchar(50),
 constraint fk_customer_order foreign key (id_customer) references customers (id_customer),
-constraint fk_employee_order foreign key (id_employee) references employees (id_employee)
+constraint fk_employee_order foreign key (id_employee) references employees (id_employee),
+constraint	check (shipped_date >= created_date),
+constraint	check (status_order = 'waiting' or  status_order ='completed' or status_order ='canceled'),
+constraint	check (payment_type = 'cash' or payment_type =  'credit card')
 );
+
+alter table orders modify created_date datetime default(CURRENT_DATE());
+alter table orders add constraint shipped_date  check (shipped_date >= created_date);
+alter table orders modify status_order varchar(50) default 'waiting'check (status_order = 'waiting' or  'completed' or 'canceled');
+alter table orders modify payment_type varchar(20) default 'cash'; -- check (payment_type = 'cash' or 'credit card');
 
 
 Create table order_details(
