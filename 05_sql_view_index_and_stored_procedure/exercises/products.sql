@@ -72,19 +72,26 @@ product_description varchar(400),
 product_status varchar(50) )
 
 begin
+update products set 
+products.product_code = product_code,
+products.product_name = product_name,
+products.product_price = product_price,
+products.product_amount = product_amount,
+products.product_description = product_description,
+products.product_status = product_status where products.id = id;
 
-update products set products.product_code = product_code where products.id = id;
-update products set products.product_name = product_name where products.id = id;
-update products set products.product_price = product_price where products.id = id;
-update products set products.product_amount = product_amount where products.id = id;
-update products set products.product_description = product_description where products.id = id;
-update products set products.product_status = product_status where products.id = id;
+-- update products set products.product_code = product_code where products.id = id;
+-- update products set products.product_name = product_name where products.id = id;
+-- update products set products.product_price = product_price where products.id = id;
+-- update products set products.product_amount = product_amount where products.id = id;
+-- update products set products.product_description = product_description where products.id = id;
+-- update products set products.product_status = product_status where products.id = id;
 
 end //
 
 DELIMITER ;
 
-call set_product('7', 'PD_07', 'Xe tăng', '2500', '7', 'abcd', 'dbca');
+call set_product('7', 'PD_07', 'Xe cộ', '2500', '7', 'abcd', 'dbca');
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS `set_product`//
