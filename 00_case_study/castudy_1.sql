@@ -146,7 +146,7 @@ where customer_types.name_customer_type = 'Diamond'
 group by contracts.id_customer
 order by  contracts.id_customer desc;
 
--- Câu 5.
+-- Câu 5. !!!!!!!!!!!!!!! Chưa clear
 Select customers.id_customer, customers.name_customer, customer_types.name_customer_type, 
 contracts.id_contract, services.name_service, contracts.day_start, contracts.day_end, 
 (services.cost + sum(contract_details.amount * services_go_with.cost)) as 'total'
@@ -168,19 +168,23 @@ join services on contracts.id_service = services.id_service
 group by customers.id_customer;
 
 
--- Câu 6.
-Create view viewc6a as
+-- Câu 6.  !!!!!!!!!!!!!!! Chưa clear
+
 Select services.id_service, services.name_service, services.area, services.cost, service_types.name_service_type from services
 left join service_types on services.id_service_type = service_types.id_service_type
 left join contracts on services.id_service = contracts.id_service
 where ((year(contracts.day_start) < 2019))
-group by services.id_service;
-
-Create view viewc6b as
+group by services.id_service
+union
 Select services.id_service, services.name_service, services.area, services.cost, service_types.name_service_type from services
 left join service_types on services.id_service_type = service_types.id_service_type
 left join contracts on services.id_service = contracts.id_service
-where services.id_service <> contracts.id_service;
+where  contracts.id_contract <=> null;
+
+
+-- Câu 7.
+
+
 
 
 

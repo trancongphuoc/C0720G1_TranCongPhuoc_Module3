@@ -1,0 +1,62 @@
+#top {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#middle {
+    float: top;
+    width: 100%;
+    height: 600px;
+}
+
+#middle_left {
+    float: left;
+    width: 80%;
+    height: 600px;
+    text-align: center;
+
+}
+
+.middle_left {
+    float: left;
+    width: 20%;
+    height: 300px;
+
+}
+
+#middle_left_top {
+    width: 100%;
+    height: 50%;
+}
+
+#middle_left_bottom {
+    width: 100%;
+    height: 50%;
+}
+
+#middle_right {
+    float: right;
+    width: 20%;
+    height: 600px;
+
+}
+
+#middle_right_left {
+    float: right;
+    width: 50%;
+
+}
+
+#middle_right_right {
+    float: right;
+    width: 50%;
+
+}
+
+ul {
+    list-style-image:url("kimcuong.jpg") ;
+}
+
