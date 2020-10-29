@@ -203,10 +203,9 @@ select  customers.name_customer from customers
 group by customers.name_customer;
 
 -- Cách 3. !!!!!!!!!!!!!!!!!!!!!!1
--- select customers.name_customer from customers
--- where (select count(*) from customers) > 1;
-
-                   
+select customers.name_customer from customers
+union
+select customers.name_customer from customers;
 
 -- Câu 9.
 select month(contracts.day_start) as month ,count(month(contracts.day_start)) as amount from contracts
@@ -226,22 +225,31 @@ join customers on customers.id_customer = contracts.id_customer
 join customer_types on customer_types.id_customer_type = customers.id_customer_type
 where customer_types.name_customer_type = 'Diamond' and customers.address in ('Vinh' , 'Quảng Ngãi');
 
--- Câu 12. !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Select contracts.id_contract, employees.name_employee, customers.name_customer, customers.phone_number, services.name_service, count(contract_details.id_service_go_with), contracts.deposit from contracts
-join employees on employees.id_employee = contracts.id_employee
-join customers on customers.id_customer = contracts.id_customer
-join services on services.id_service = contracts.id_service
-join contract_details on contract_details.id_contract = contracts.id_contract
-join services_go_with on services_go_with.id_service_go_with = contract_details.id_service_go_with
-where year()
+-- Câu 12. !!!!!!!!!!!!!!!!!!!!!!!!!!!! ok
+Select contracts.id_contract, employees.name_employee, customers.name_customer, customers.phone_number, services.name_service,
+count(contract_details.id_service_go_with), 
+contracts.deposit 
+from contracts
+left join employees on employees.id_employee = contracts.id_employee
+left join customers on customers.id_customer = contracts.id_customer
+left join services on services.id_service = contracts.id_service
+left join contract_details on contract_details.id_contract = contracts.id_contract
+left join services_go_with on services_go_with.id_service_go_with = contract_details.id_service_go_with
+where month(contracts.day_start) in ( 10,11,12) and year(contracts.day_start) = 2019
+and customers.id_customer not in (select contracts.id_customer from contracts where month(contracts.day_start) in(1,2,3,4,5,6))
+group by customers.name_customer;
 
 
--- Câu 13. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-Select services_go_with.name_service_go_with as name_, (count(contract_details.id_service_go_with)) as count_  from services_go_with
+-- Câu 13. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok
+Create view caculate_max as (
+Select services_go_with.name_service_go_with as name_, (sum(contract_details.amount)) as total  from services_go_with 
 join contract_details on contract_details.id_service_go_with = services_go_with.id_service_go_with
-group by contract_details.id_service_go_with ;
--- having (select count(contract_details.id_service_go_with) from services_go_with) = max
+group by contract_details.id_service_go_with) ;
+
+
+select name_, max(total) as total from caculate_max
+group by name_
+having (total) in (select max(total) from caculate_max);
 
 
 
@@ -293,8 +301,8 @@ having count(contract_details.id_service_go_with) >= 10);
 
 
 
--- Câu 20.
-select * from customers, (select * from employees) as ep
+-- Câu 20. !!!!!!!!!!!!!!!! chưa
+-- select * from customers, (select * from employees) as ep
 
 
 
