@@ -168,12 +168,13 @@ join services on contracts.id_service = services.id_service
 group by customers.id_customer;
 
 
--- Câu 6.  !!!!!!!!!!!!!!! Chưa clear
+-- Câu 6.  !!!!!!!!!!!!!!! ok
 
 Select services.id_service, services.name_service, services.area, services.cost, service_types.name_service_type from services
 left join service_types on services.id_service_type = service_types.id_service_type
 left join contracts on services.id_service = contracts.id_service
-where ((year(contracts.day_start) < 2019))
+where year(contracts.day_start) < 2019
+and contracts.id_service not in (select contracts.id_service from contracts where year(contracts.day_start) > 2019)
 group by services.id_service
 union
 Select services.id_service, services.name_service, services.area, services.cost, service_types.name_service_type from services
@@ -182,7 +183,129 @@ left join contracts on services.id_service = contracts.id_service
 where  contracts.id_contract <=> null;
 
 
--- Câu 7.
+-- Câu 7.  !!!!!!!!!!!!!!!!! ok
+select contracts.day_start,services.id_service, services.name_service, services.area, services.number_of_people, services.cost, service_types.name_service_type 
+from services
+join service_types on services.id_service_type = service_types.id_service_type
+join contracts on services.id_service = contracts.id_service
+where year(contracts.day_start) = 2018 
+and contracts.id_service not in (select contracts.id_service from contracts where year(contracts.day_start) = 2019 );
+
+
+-- Câu 8.!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+-- Cách 1.
+Select distinct customers.name_customer from customers;
+
+-- Cách 2.
+select  customers.name_customer from customers
+group by customers.name_customer;
+
+-- Cách 3. !!!!!!!!!!!!!!!!!!!!!!1
+-- select customers.name_customer from customers
+-- where (select count(*) from customers) > 1;
+
+                   
+
+-- Câu 9.
+select month(contracts.day_start) as month ,count(month(contracts.day_start)) as amount from contracts
+where year(contracts.day_start) = 2019
+group by month(contracts.day_start)
+order by month(contracts.day_start);
+
+-- Câu 10
+Select contract_details.id_contract,count(contract_details.id_service_go_with) from contract_details
+group by contract_details.id_contract;
+
+-- Câu 11.
+Select customers.name_customer, services_go_with.name_service_go_with from services_go_with
+join contract_details on contract_details.id_service_go_with = services_go_with.id_service_go_with
+join contracts on contracts.id_contract = contract_details.id_contract
+join customers on customers.id_customer = contracts.id_customer
+join customer_types on customer_types.id_customer_type = customers.id_customer_type
+where customer_types.name_customer_type = 'Diamond' and customers.address in ('Vinh' , 'Quảng Ngãi');
+
+-- Câu 12. !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Select contracts.id_contract, employees.name_employee, customers.name_customer, customers.phone_number, services.name_service, count(contract_details.id_service_go_with), contracts.deposit from contracts
+join employees on employees.id_employee = contracts.id_employee
+join customers on customers.id_customer = contracts.id_customer
+join services on services.id_service = contracts.id_service
+join contract_details on contract_details.id_contract = contracts.id_contract
+join services_go_with on services_go_with.id_service_go_with = contract_details.id_service_go_with
+where year()
+
+
+-- Câu 13. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Select services_go_with.name_service_go_with as name_, (count(contract_details.id_service_go_with)) as count_  from services_go_with
+join contract_details on contract_details.id_service_go_with = services_go_with.id_service_go_with
+group by contract_details.id_service_go_with ;
+-- having (select count(contract_details.id_service_go_with) from services_go_with) = max
+
+
+
+-- Câu 14.
+Select contracts.id_contract,service_types.name_service_type, services_go_with.name_service_go_with, count(contract_details.id_service_go_with) as count_ from contracts
+join services on services.id_service = contracts.id_service
+join service_types on service_types.id_service_type = services.id_service_type
+join contract_details on contract_details.id_contract = contracts.id_contract
+join services_go_with on services_go_with.id_service_go_with = contract_details.id_service_go_with
+group by contract_details.id_service_go_with
+having count_ = 1;
+
+
+-- Câu 15.
+select employees.id_employee, employees.name_employee, levels.name_level, departments.name_department, employees.phone_number, employees.address from employees
+join levels on levels.id_level = employees.id_level
+join departments on departments.id_department = employees.id_department
+join contracts on contracts.id_employee = employees.id_employee
+where  year(contracts.day_start) between 2018 and 2019
+group by employees.id_employee
+having count(contracts.id_employee) <= 3;
+
+-- Câu 16.
+SET SQL_SAFE_UPDATES=0;
+delete from employees where employees.id_employee not in (select contracts.id_employee from contracts);
+
+
+-- Câu 17.
+
+update customers set  customers.id_customer_type = 5
+where customers.id_customer_type = 4 and customers.id_customer in
+(
+select contracts.id_customer from contracts
+where contracts.total_money > 5000
+);
+
+-- Câu 18. !!!!!!!!!!!!!!!!!!!!!!!!!!!!! chưa
+-- SET GLOBAL FOREIGN_KEY_CHECKS = 1;
+delete from customers where customers.id_customer
+in (select contracts.id_customer from contracts where year(contracts.day_start) < 2016);
+
+-- Câu 19.
+
+update services_go_with set services_go_with.cost = services_go_with.cost*2 
+where services_go_with.id_service_go_with in 
+(select contract_details.id_service_go_with from contract_details 
+group by contract_details.id_service_go_with
+having count(contract_details.id_service_go_with) >= 10);
+
+
+
+-- Câu 20.
+select * from customers, (select * from employees) as ep
+
+
+
+
+
+
+
+
+
+
+
 
 
 

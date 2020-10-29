@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+        }
+
+        input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            position: absolute;
+            left: 50px;
+            font-size: 17px;
+        .text-semi-bold;
+        }
+
+
+        #father {
+
+        }
+
+        #header {
+            background-color: royalblue;
+            width: 99%;
+            height: 60px;
+            position: fixed;
+            top: 0;
+        }
+
+
+
+        #header p {
+            font-size: 35px;
+            position: absolute;
+            left: 100px;
+            bottom: -25px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #middle {
+            background-color: lightgrey;
+            width: 100%;
+            height: 800px;
+        }
+
+        #middle_left {
+            width: 33%;
+            height: 400px;
+            text-align: justify;
+            position: absolute;
+            left: 20%;
+            top: 20%;
+
+        }
+
+        #middle_left p {
+            font-size: 25px;
+            position: absolute;
+            top: 27%;
+        }
+
+        #middle_left img {
+            position: absolute;
+            right: 185px;
+            width: 350px;
+            height: 175px;
+        }
+
+        #middle_right {
+            background-color: white;
+            width: 25%;
+            height: 350px;
+            position: absolute;
+            left: 58%;
+            top: 20%;
+            border-radius: 10px;
+            box-shadow: 15px 15px 100px 1px darkgrey;
+        }
+
+        #middle_right #user {
+            border-radius: 7px;
+            border: solid 1px darkgray;
+            width: 90%;
+            height: 40px;
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
+        #middle_right #password {
+            border-radius: 7px;
+            border: solid 1px darkgray;
+            width: 90%;
+            height: 40px;
+            position: absolute;
+            left: 15px;
+            top: 75px;
+        }
+
+        #middle_right #login {
+            border-radius: 7px;
+            border: solid 1px darkgray;
+            width: 92%;
+            height: 45px;
+            position: absolute;
+            left: 15px;
+            top: 140px;
+            font-size: 20px;
+            color: white;
+            background-color: dodgerblue;
+        }
+
+        #middle_right a {
+            position: absolute;
+            left: 127px;
+            top: 200px;
+            text-decoration: none;
+            color: dodgerblue;
+
+        }
+
+        #middle_right hr {
+            margin-top: 240px;
+            width: 90%;
+        }
+
+        #middle_right #create {
+            border-radius: 7px;
+            border: solid 1px darkgray;
+            width: 50%;
+            height: 50px;
+            position: absolute;
+            left: 103px;
+            top: 270px;
+            font-size: 20px;
+            color: white;
+            background-color: limegreen;
+        }
+
+        #middle_right_2 {
+            width: 23%;
+            height: 350px;
+            position: absolute;
+            left: 900px;
+            top: 72%;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+
+        #bottom {
+            background-color: white;
+            width: 99%;
+            height: 200px;
+            position: absolute;
+        }
+        #bottom #ul {
+            margin-left: 150px;
+
+        }
+
+        #bottom #ul li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 5px;
+            font-size: 12px;
+
+        }
+
+        #bottom ul {
+            margin-left: 150px;
+            line-height: 0.5;
+            color: grey;
+            cursor: pointer;
+        }
+
+        #bottom ul li {
+            list-style-type: none;
+            display: inline-block;
+            padding-left: 5px;
+            line-height: 0.7;
+            font-size: 12px;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="father">
+
+    <div id="header">
+        <p>Welcome to facebook</p>
+    </div>
+
+
+    <div id="middle">
+        <div id="middle_left">
+            <img src="facebook.svg">
+            <p>Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</p>
+        </div>
+
+        <div id="middle_right">
+            <label>
+                <input type="text" placeholder="Email hoặc số điện thoại" id="user">
+            </label>
+            <label>
+                <input type="password" placeholder="Mật khẩu" id="password">
+            </label>
+            <button id="login">Đăng Nhập</button>
+
+            <a href="#">Quên mật khẩu?</a>
+
+            <button id="create">Tạo tài khoản mới</button>
+            <hr>
+        </div>
+
+        <div id="middle_right_2">
+            <label style="font-weight: bold"><a href="#" style="text-decoration: none; color: black">Tạo trang</a></label>
+            <label> dành cho người nổi tiếng nhãn hiệu hoặc doanh nghiêp</label>
+        </div>
+    </div>
+
+
+    <div id="bottom">
+        <ul id="ul">
+            <li>Tiếng Việt</li>
+            <li>English (UK)</li>
+            <li>中文(台灣)</li>
+            <li>日本語</li>
+            <li>한국어</li>
+            <li>ภาษาไทย</li>
+            <li>Français (France)</li>
+            <li>Español</li>
+            <li>Português (Brasil)</li>
+            <li>Deutsch</li>
+            <li>Italiano</li>
+        </ul>
+        <hr style="width: 74%">
+
+        <ul>
+            <li>Đăng ký</li>
+            <li>Đăng nhập</li>
+            <li>Messenger</li>
+            <li>Facebook Lite</li>
+            <li>Watch</li>
+            <li>Danh bạ</li>
+            <li>Trang</li>
+            <li>Hạng mục Trang</li>
+            <li>Địa điểm</li>
+            <li>Trò chơi</li>
+            <li>Vị trí</li>
+            <li>Facebook Pay</li>
+        </ul>
+
+        <ul>
+            <li>Nhóm</li>
+            <li>Jobs</li>
+            <li>Oculus</li>
+            <li>Portal</li>
+            <li>Instagram</li>
+            <li>Địa phương</li>
+            <li>Chiến dịch gây quỹ</li>
+            <li>Dịch vụ</li>
+            <li>Trung tâm thông tin bỏ phiếu</li>
+            <li>Giới thiệu</li>
+            <li>Tạo quảng cáo</li>
+            <li>Tạo Trang</li>
+        </ul>
+
+        <ul>
+            <li>Nhà phát triển</li>
+            <li>Tuyển dụng</li>
+            <li>Quyền riêng tư</li>
+            <li>Cookie</li>
+            <li>Lựa chọn quảng cáo</li>
+            <li>Điều khoản</li>
+            <li>Trợ giúp</li>
+            <li>Cài đặt</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
