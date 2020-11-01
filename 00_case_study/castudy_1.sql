@@ -273,7 +273,7 @@ group by employees.id_employee
 having count(contracts.id_employee) <= 3;
 
 -- Câu 16.
-SET SQL_SAFE_UPDATES=0;
+-- SET SQL_SAFE_UPDATES=0;
 delete from employees where employees.id_employee not in (select contracts.id_employee from contracts);
 
 
@@ -301,13 +301,52 @@ having count(contract_details.id_service_go_with) >= 10);
 
 
 
--- Câu 20. !!!!!!!!!!!!!!!! chưa
--- select * from customers, (select * from employees) as ep
+-- Câu 20. !!!!!!!!!!!!!!!! ok
+select customers.id_customer as id, name_customer as name, email, phone_number,date_of_birth, address from customers
+ union 
+ select employees.id_employee, name_employee, email, phone_number,date_of_birth, address from employees;
+
+-- Câu 21.
+Create view V_EMPLOYEES as (
+select * from employees where address = 'Hải Châu' 
+and employees.id_employee in (select contracts.id_employee from contracts where day_start = '2019-12-12')
+);
+
+select * from V_EMPLOYEES;
 
 
+-- Câu 22.
+update V_EMPLOYEES set address = 'Liên Chiểu';
+
+-- Câu 23.
+DELIMITER //
+Create procedure Sp_1 (id int)
+
+begin
+
+delete from customers where customers.id_customer = id;
+
+end //
+
+DELIMITER ;
+
+call Sp_1(13);
 
 
+-- Câu 24. chưa
 
+-- Câu 25. chưa 
+DELIMITER //
+Create trigger Tr_1 after delete  on contracts for each row
+begin
+
+select count from contracts;
+
+end //
+DELIMITER ;
+
+
+delete from contracts where id_contract = 25;
 
 
 
