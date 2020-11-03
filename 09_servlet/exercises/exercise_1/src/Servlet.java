@@ -14,12 +14,12 @@ public class Servlet extends HttpServlet {
         float price = Float.parseFloat(request.getParameter("price"));
         float percent = Float.parseFloat(request.getParameter("percent"));
 
-        float amout = price * percent * 0.01f;
-        float discountPrice = price - amout;
+        float amount = price * percent * 0.01f;
+        float discountPrice = price - amount;
 
         writer.println("<html>");
         writer.println(description);
-        writer.println("<br>Discount Amount = " + amout);
+        writer.println("<br>Discount Amount = " + amount);
         writer.println("<br>Discount Price = " + discountPrice);
         writer.println("</html>");
 

@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: Dell
-  Date: 11/2/2020
-  Time: 6:05 PM
+  Date: 11/3/2020
+  Time: 10:51 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>$Title$</title>
@@ -21,25 +22,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
-<form method="post" action="display-discount">
-    <div class="container ml-0">
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Product Description</label>
-            <input class="form-control col-10" type="text" placeholder="Product Description" name="description">
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">List Price</label>
-            <input class="form-control col-10" type="text" placeholder="List Price" name="price">
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Discount Percent</label>
-            <input class="form-control col-10" type="text" placeholder="Discount Percent" name="percent">
-        </div>
-        <input type="submit" value="Enter" class="btn btn-primary">
+<form method="post" action="dictionary.jsp">
+    <div class="form-group">
+        <input class="form-control" type="text" placeholder="Text" name="search">
     </div>
+    <input type="submit" value="Enter">
 </form>
+
+
 </body>
 </html>
