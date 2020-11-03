@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="models.Customer" %>
+<%@ page import="controls.CreateCustomer" %><%--
   Created by IntelliJ IDEA.
   User: Dell
   Date: 11/3/2020
@@ -22,29 +24,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
+    <style>
+    </style>
 </head>
 <body>
+<%
+    request.setAttribute("cus", CreateCustomer.getCustomerList());
+%>
 
-<table class="table">
+<table class="table table-dark">
     <thead>
     <tr>
         <th>Name</th>
-        <th></th>
-        <th></th>
+        <th>Date of birth</th>
+        <th>Address</th>
+        <th>Image avatar</th>
     </tr>
     </thead>
+    <c:forEach items="${cus}" var="cusList">
     <tbody>
     <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
+        <td><c:out value="${cusList.name}"/></td>
+        <td><c:out value="${cusList.dateOfBirth}"/></td>
+        <td><c:out value="${cusList.address}"/></td>
+        <td><img src="<c:out value="${cusList.image}"/>" height="50px" alt=""></td>
     </tr>
     </tbody>
+    </c:forEach>
 </table>
 
 </body>
