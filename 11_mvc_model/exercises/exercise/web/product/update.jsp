@@ -32,6 +32,8 @@
         <input class="form-control" type="text" name="description" value="${product.getDescriptionProduct()}">
         <input class="form-control" type="text" name="producer" value="${product.getProducerProduct()}">
         <input class="btn btn-primary" value="Update" type="submit">
+        <br>
+        <a href="products" class="btn btn-warning">Back to menu</a>
     </div>
 </form>
 </body>

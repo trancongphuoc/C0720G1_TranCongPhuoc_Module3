@@ -46,12 +46,13 @@ public class ProductService implements CrudRepository<Product> {
     }
 
     @Override
-    public Product findProductByName(String name) {
+    public List<Product> findProductByName(String name) {
+        List<Product> productList = new ArrayList<>();
         for (int key: productMap.keySet()) {
             if (productMap.get(key).getNameProduct().equals(name)) {
-                return productMap.get(key);
+                productList.add(productMap.get(key));
             }
         }
-        return null;
+        return productList;
     }
 }

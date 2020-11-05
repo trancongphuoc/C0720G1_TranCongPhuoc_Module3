@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="practice:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/practice_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="practice/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="practice" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="D:/C0720G1/libs/jstl-1.2.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/javax.annotation.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/javax.jms.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/javax.persistence.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/javax.resource.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/javax.servlet.jsp.jstl.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/javax.transaction.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/jstl-api-1.2.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/jstl-impl-1.2.jar" />
+          <element id="file-copy" path="D:/C0720G1/libs/mysql-connector-java-8.0.17.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/libs/jstl-api-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/libs/jstl-impl-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/libs/mysql-connector-java-8.0.17.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -13,5 +13,5 @@ public interface CrudRepository<E> {
 
     E seeProduct(int id);
 
-    E findProductByName(String name);
+    List<E> findProductByName(String name);
 }

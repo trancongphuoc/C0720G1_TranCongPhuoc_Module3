@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Exeption</title>
+    <title>Not Find</title>
 </head>
 <body>
-<h1 style="color: red">Erro</h1>
+<h1 style="color: red">Not Found</h1>
 </body>
 </html>

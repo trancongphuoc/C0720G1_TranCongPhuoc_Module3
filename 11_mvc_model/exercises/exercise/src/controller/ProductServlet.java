@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
+
     private ProductService productService = new ProductService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action");
 
         if (action == null) {
@@ -25,14 +30,12 @@ public class ProductServlet extends HttpServlet {
 
         switch (action) {
             case "create":
-                createNewProduct(request,response);
+                createNewProduct(request, response);
                 break;
             case "update":
-                updateProduct(request,response);
-                break;
+                updateProduct(request, response);
             case "delete":
-                break;
-            case "findById":
+                deleteProduct(request,response);
                 break;
             default:
                 break;
@@ -40,6 +43,9 @@ public class ProductServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action");
 
         if (action == null) {
@@ -51,28 +57,46 @@ public class ProductServlet extends HttpServlet {
                 createJSP(request, response);
                 break;
             case "update":
-                updateJSP(request,response);
+                updateJSP(request, response);
                 break;
             case "delete":
-                deleteProduct(request,response);
+                deleteJSP(request, response);
                 break;
             case "see":
-                seeProduct(request,response);
+                seeProduct(request, response);
                 break;
             case "Search":
-                findProductByName(request,response);
+                findProductByName(request, response);
                 break;
             default:
                 printListProduct(request, response);
                 break;
         }
     }
+
     // Xoa Product.
+    private  void deleteJSP(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.seeProduct(id);
+
+        request.setAttribute("product", product);
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/delete.jsp");
+
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         productService.delete(id);
 
-        printListProduct(request,response);
+        printListProduct(request, response);
     }
 
     // Tạo mới product.
@@ -93,7 +117,7 @@ public class ProductServlet extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         String description = request.getParameter("description");
         String producer = request.getParameter("producer");
-
+        
         int id;
         List<Product> productList = productService.printList();
         id = productList.size() == 0 ? 1 : productList.size() + 1;
@@ -101,7 +125,9 @@ public class ProductServlet extends HttpServlet {
         Product product = new Product(id, name, price, description, producer);
         productService.create(product);
 
-        printListProduct(request,response);
+        printListProduct(request, response);
+
+
     }
 
 
@@ -148,19 +174,20 @@ public class ProductServlet extends HttpServlet {
         Product product = new Product(id, name, price, description, producer);
         productService.update(id, product);
 
-        printListProduct(request,response);
+        printListProduct(request, response);
     }
 
     // See Product
     private void seeProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.seeProduct(id);
-
-        request.setAttribute("product", product);
+        List<Product> productList = new ArrayList<>();
+        productList.add(product);
+        request.setAttribute("productList", productList);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/info_detail.jsp");
         try {
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -171,21 +198,21 @@ public class ProductServlet extends HttpServlet {
     // Find product by name
     private void findProductByName(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
-        Product product = productService.findProductByName(name);
-        if (product == null) {
+        List<Product> productList = productService.findProductByName(name);
+        if (productList == null) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("exception/exception.jsp");
             try {
-                requestDispatcher.forward(request,response);
+                requestDispatcher.forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            request.setAttribute("product", product);
+            request.setAttribute("productList", productList);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/info_detail.jsp");
             try {
-                requestDispatcher.forward(request,response);
+                requestDispatcher.forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {

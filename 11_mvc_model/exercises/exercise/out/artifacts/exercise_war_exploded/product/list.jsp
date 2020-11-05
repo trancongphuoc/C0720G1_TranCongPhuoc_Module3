@@ -30,10 +30,12 @@
 
 <div class="ml-5 mt-3 mr-5">
     <div class="row">
+        <div>
         <a href="/products?action=create" class="btn btn-success ml-3">Create new product</a>
-        <div class="ml-auto row col-6">
-            <form method="get" class="row">
-                <input type="submit" class="btn btn-primary" value="Search" name="action">
+        </div>
+        <div class="ml-auto row form-group col-6">
+            <form method="get" class="row" style="margin-left: 300px">
+                <input type="submit" class="btn btn-info" value="Search" name="action">
                 <input type="text" class="form-control col-8" name="name">
             </form>
         </div>

@@ -273,7 +273,7 @@ group by employees.id_employee
 having count(contracts.id_employee) <= 3;
 
 -- Câu 16.
--- SET SQL_SAFE_UPDATES=0;
+SET SQL_SAFE_UPDATES=0;
 delete from employees where employees.id_employee not in (select contracts.id_employee from contracts);
 
 
@@ -287,7 +287,7 @@ where contracts.total_money > 5000
 );
 
 -- Câu 18. !!!!!!!!!!!!!!!!!!!!!!!!!!!!! chưa
--- SET GLOBAL FOREIGN_KEY_CHECKS = 1;
+-- SET GLOBAL FOREIGN_KEY_CHECKS = OFF;
 delete from customers where customers.id_customer
 in (select contracts.id_customer from contracts where year(contracts.day_start) < 2016);
 

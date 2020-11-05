@@ -49,6 +49,8 @@
             <input type="text" class="form-control col-5" name="producer" placeholder="Producer">
         </div>
         <input type="submit" class="btn btn-primary" value="Create">
+        <br>
+        <a href="products" class="btn btn-warning">Back to menu</a>
     </div>
 </form>
 </body>
