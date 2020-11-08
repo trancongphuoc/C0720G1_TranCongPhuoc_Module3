@@ -39,28 +39,6 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        userService.deleteUser(id);
-
-        printListUser(request, response);
-    }
-
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String country = request.getParameter("country");
-
-        User user = new User(id, name, email, country);
-
-        userService.updateUser(id, user);
-
-        printListUser(request, response);
-    }
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
@@ -92,6 +70,30 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        userService.deleteUser(id);
+
+        printListUser(request, response);
+    }
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+
+        User user = new User(id, name, email, country);
+
+        userService.updateUser(id, user);
+
+        printListUser(request, response);
+    }
+
+
+
     private void sortJSP(HttpServletRequest request, HttpServletResponse response) {
         List<User> userList = userService.sortListUserByName();
 
@@ -112,7 +114,6 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
 
         List<User> userList = userService.findUserByCountry(country);
-        System.out.println(userList.size());
         request.setAttribute("userList", userList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/find.jsp");
 
@@ -161,7 +162,6 @@ public class UserServlet extends HttpServlet {
     private void updateJSP(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         User user = userService.findUserById(id);
-        System.out.println(user);
 
         request.setAttribute("user", user);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/update.jsp");

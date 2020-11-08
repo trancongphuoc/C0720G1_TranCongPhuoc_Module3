@@ -43,5 +43,6 @@
     </tr>
     </tbody>
 </table>
+<a href="users" class="btn btn-primary">Back to menu</a>
 </body>
 </html>
