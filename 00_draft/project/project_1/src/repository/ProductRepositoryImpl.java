@@ -240,11 +240,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         ResultSet resultSet = null;
         try {
             int start = (page-1) * record;
-            int end = record;
 
             preparedStatement = connection.prepareStatement(SELECT_LIMIT_PRODUCT);
             preparedStatement.setInt(1, start);
-            preparedStatement.setInt(2, end);
+            preparedStatement.setInt(2, record);
 
             resultSet = preparedStatement.executeQuery();
 

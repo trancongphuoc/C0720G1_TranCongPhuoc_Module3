@@ -139,6 +139,7 @@ public class ProductServlet extends HttpServlet {
 
         List<Product> productList = productService.getProductLimit(page, 5);
 
+
         double noOfRecord = productService.getCount();
         double noOfPage = Math.ceil(noOfRecord /5);
 

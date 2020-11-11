@@ -150,38 +150,49 @@ PRIMARY KEY (contract_detail_id)
 
 -- Tạo khóa ngoại cho bảng EMPLOYEE...
 ALTER TABLE employee
-ADD CONSTRAINT fk_positons_employee FOREIGN KEY (position_id) REFERENCES positions(position_id),
-ADD CONSTRAINT fk_education_degree_employee FOREIGN KEY (education_degree_id) REFERENCES education_degree(education_degree_id),
-ADD CONSTRAINT fk_division_employee FOREIGN KEY (division_id) REFERENCES division(division_id),
-ADD CONSTRAINT fk_user_employee FOREIGN KEY (username) REFERENCES user(username);
+ADD CONSTRAINT fk_positons_employee FOREIGN KEY (position_id) REFERENCES positions(position_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_education_degree_employee FOREIGN KEY (education_degree_id) REFERENCES education_degree(education_degree_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_division_employee FOREIGN KEY (division_id) REFERENCES division(division_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_user_employee FOREIGN KEY (username) REFERENCES user(username) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Tạo khóa ngoại cho bảng CUSTOMER...
 ALTER TABLE customer
-ADD CONSTRAINT fk_customer_type_customer FOREIGN KEY (customer_type_id) REFERENCES customer_type(customer_type_id);
+ADD CONSTRAINT fk_customer_type_customer FOREIGN KEY (customer_type_id) REFERENCES customer_type(customer_type_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Tạo khóa ngoại cho bảng USER_ROLE...
 ALTER TABLE user_role
-ADD CONSTRAINT fk_user_user_role FOREIGN KEY (username) REFERENCES user(username),
-ADD CONSTRAINT fk_role_user_role FOREIGN KEY (role_id) REFERENCES role(role_id);
+ADD CONSTRAINT fk_user_user_role FOREIGN KEY (username) REFERENCES user(username) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_role_user_role FOREIGN KEY (role_id) REFERENCES role(role_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Tạo khóa ngoại cho bảng SERVICE...
 ALTER TABLE service
-ADD CONSTRAINT fk_service_type_service FOREIGN KEY (service_type_id) REFERENCES service_type(service_type_id),
-ADD CONSTRAINT fk_rent_type_service FOREIGN KEY (rent_type_id) REFERENCES rent_type(rent_type_id);
+ADD CONSTRAINT fk_service_type_service FOREIGN KEY (service_type_id) REFERENCES service_type(service_type_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_rent_type_service FOREIGN KEY (rent_type_id) REFERENCES rent_type(rent_type_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Tạo khóa ngoài cho bảng CONTRACT...
 ALTER TABLE contract
-ADD CONSTRAINT fk_employee_contract FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-ADD CONSTRAINT fk_customer_contract FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-ADD CONSTRAINT fk_service_contract FOREIGN KEY (service_id) REFERENCES service(service_id);
+ADD CONSTRAINT fk_employee_contract FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_customer_contract FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_service_contract FOREIGN KEY (service_id) REFERENCES service(service_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Tạo khóa ngoại cho bảng CONTRACT_DETAIL...
 ALTER TABLE contract_detail
-ADD CONSTRAINT fk_contract_contract_detail FOREIGN KEY (contract_id) REFERENCES contract(contract_id),
-ADD CONSTRAINT fk_attach_service_contract_detail FOREIGN KEY (attach_service_id) REFERENCES attach_service(attach_service_id);
+ADD CONSTRAINT fk_contract_contract_detail FOREIGN KEY (contract_id) REFERENCES contract(contract_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT fk_attach_service_contract_detail FOREIGN KEY (attach_service_id) REFERENCES attach_service(attach_service_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- ---------------------------------------------------------------------------------------------------------------------------------------
 
+-- Thêm dữ liệu vào bảng CUSTOMER...
+INSERT INTO customer (`customer_id`, `customer_name`, `customer_birthday`, `customer_gender`, `customer_id_card`, `customer_phone`, `customer_email`, `customer_address`, `customer_type_id`) VALUES ('2', 'Lý', '1995-06-07', b'0', '044200002961', '0944524135', 'teopro1234@gmail.com', 'Đà Nẵng', '2');
+INSERT INTO `00_case_study_jsp_and_servlet`.`customer` (`customer_id`, `customer_name`, `customer_birthday`, `customer_gender`, `customer_id_card`, `customer_phone`, `customer_email`, `customer_address`, `customer_type_id`) VALUES ('3', 'Jang', '1999-11-25', b'1', '044200002961', '0944524135', 'teopro1234@gmail.com', 'Quảng Trị', '3');
+INSERT INTO `00_case_study_jsp_and_servlet`.`customer` (`customer_id`, `customer_name`, `customer_birthday`, `customer_gender`, `customer_id_card`, `customer_phone`, `customer_email`, `customer_address`, `customer_type_id`) VALUES ('4', 'Long', '1991-05-09', b'1', '044200002961', '0944524135', 'teopro1234@gmail.com', 'Huế', '4');
+INSERT INTO `00_case_study_jsp_and_servlet`.`customer` (`customer_id`, `customer_name`, `customer_birthday`, `customer_gender`, `customer_id_card`, `customer_phone`, `customer_email`, `customer_address`, `customer_type_id`) VALUES ('5', 'Dũng', '1997-09-09', b'0', '044200002961', '0944524135', 'teopro1234@gmail.com', 'Gia Lai', '5');
+
+-- Thêm dữ liệu cho bảng USER_ROLE...
+INSERT INTO user_role VALUES ('admin', 6);
+
+-- --------------------------------------------------------------------------------------------
+SELECT customer.customer_id,customer_name,customer_birthday,customer_gender,customer_id_card,customer_phone,customer_email,customer_address,customer_type_name FROM customer JOIN customer_type on customer.customer_type_id = customer_type.customer_type_id;
 
 
 

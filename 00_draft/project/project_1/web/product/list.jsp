@@ -55,6 +55,7 @@
         <tbody>
         <c:forEach items="${productList}" var="product">
             <tr>
+                <td></td>
                 <td>${product.id}</td>
                 <td><a href="products?action=see&id=${product.id}">${product.name}</a></td>
                 <td>${product.price}</td>
@@ -75,31 +76,33 @@
             <c:if test="${currentPage != 1}">
                 <li class="page-item"><a class="page-link" href="products?page=${currentPage-1}">Previous</a></li>
             </c:if>
-            <c:forEach begin="1" end="${noOfPage}" var="i">
-                <li class="page-item"><a id="${i}" class="page-link active" href="products?page=${i}">${i}</a></li>
-            </c:forEach>
+<%--            <c:forEach begin="1" end="${noOfPage}" var="i">--%>
+<%--                <li class="page-item"><a id="${i}" class="page-link active" href="products?page=${i}">${i}</a></li>--%>
+<%--            </c:forEach>--%>
+            <c:if test="${currentPage == 1}">
+                <li class="page-item active"><a id="${i}" class="page-link active" href="products?page=${currentPage}">${currentPage}</a></li>
+                <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage + 1}">${currentPage + 1}</a></li>
+                <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage + 2}">${currentPage + 2}</a></li>
+            </c:if>
+
+            <c:if test="${currentPage > 1 && currentPage < noOfPage}">
+            <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage - 1}">${currentPage - 1}</a></li>
+            <li class="page-item active"><a id="${i}" class="page-link active" href="products?page=${currentPage}">${currentPage}</a></li>
+            <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage + 1}">${currentPage +1}</a></li>
+            </c:if>
+
+            <c:if test="${currentPage == noOfPage}">
+                <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage - 2}">${currentPage - 2}</a></li>
+                <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage - 1}">${currentPage - 1}</a></li>
+                <li class="page-item active"><a id="${i}" class="page-link active" href="products?page=${currentPage}">${currentPage}</a></li>
+            </c:if>
+
             <c:if test="${currentPage != noOfPage}">
                 <li class="page-item"><a class="page-link" href="products?page=${currentPage + 1}">Next</a></li>
             </c:if>
 
         </ul>
     </nav>
-
-    <%--    <c:if test="${currentPage != 1}">--%>
-    <%--        <td><a href="products?page=${currentPage-1}">Previous</a></td>--%>
-    <%--    </c:if>--%>
-
-    <%--    <table>--%>
-    <%--        <tr>--%>
-    <%--            <c:forEach begin="1" end="${noOfPage}" var="i">--%>
-    <%--                <td><a href="products?page=${i}">${i}</a></td>--%>
-    <%--            </c:forEach>--%>
-    <%--        </tr>--%>
-    <%--    </table>--%>
-
-    <%--    <c:if test="${currentPage != noOfPage}">--%>
-    <%--        <td><a href="products?page=${currentPage + 1}">Next</a></td>--%>
-    <%--    </c:if>--%>
 
 </div>
 
@@ -224,8 +227,5 @@
         document.getElementById("deleteId").value = id;
     }
 
-    $(function () {
-        window.pagObj = $('#pagination').twbsPagination()
-    })
 </script>
 </html>
