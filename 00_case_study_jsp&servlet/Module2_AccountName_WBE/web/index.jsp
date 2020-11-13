@@ -28,7 +28,7 @@
         /*}*/
 
         .navbar {
-            background-color: #838efe;
+            background-color: #dcdeff;
             padding: 0;
             margin: 0;
         }
@@ -46,10 +46,17 @@
 </head>
 <body>
 <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/home">
         <img src="./image/logo.png" height="80" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
-    <h3 class="ml-auto mr-5 display-4">Tèo</h3>
+    <c:if test="${ username == '' || username == null }">
+        <a href="login/login.jsp" class="btn btn-outline-primary mr-5" style="color: black">Đăng Nhập</a>
+    </c:if>
+
+    <c:if test="${username != '' && username != null}">
+        <a href="#"><img src="./image/avatar.jpg" height="70px" class="mr-5"></a>
+    </c:if>
+
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light"
@@ -59,7 +66,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="/home">Home</a>
             <a class="nav-link" href="/employees">Employee</a>
             <a class="nav-link" href="/customers">Customer</a>
             <a class="nav-link" href="/services">Service</a>

@@ -194,7 +194,22 @@ INSERT INTO user_role VALUES ('admin', 6);
 -- --------------------------------------------------------------------------------------------
 SELECT customer.customer_id,customer_name,customer_birthday,customer_gender,customer_id_card,customer_phone,customer_email,customer_address,customer_type_name FROM customer JOIN customer_type on customer.customer_type_id = customer_type.customer_type_id;
 
+select
+	service.service_cost*datediff(contract_end_date, contract_start_date) + sum(contract_detail.quantity*attach_service.attach_service_cost)
+    from contract
+    join service on contract.service_id = service.service_id
+    join contract_detail on contract_detail.contract_id = contract.contract_id
+    join attach_service on contract_detail.attach_service_id = attach_service.attach_service_id
+    where contract_detail.contract_id = 12;
+    
+    
 
 
+CREATE VIEW viewname AS
+SELECT contract.contract_id, contract_start_date, contract_end_date, contract_deposit, contract_total_money, customer.customer_id, employee_id, service_id, customer_name, customer_birthday, customer_gender, customer_id_card, customer_phone, customer_email, customer_address, customer_type_id, contract_detail_id, quantity,  attach_service.attach_service_id, attach_service_name, attach_service_cost, attach_service_unit, attach_service_status FROM contract
+LEFT JOIN customer on contract.customer_id = customer.customer_id
+LEFT JOIN contract_detail on contract_detail.contract_id = contract.contract_id
+LEFT JOIN attach_service on attach_service.attach_service_id = contract_detail.attach_service_id;
 
 
+SELECT * FROM viewname;

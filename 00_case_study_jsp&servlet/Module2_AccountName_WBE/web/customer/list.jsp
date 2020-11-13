@@ -24,7 +24,7 @@
 
     <style>
         .navbar {
-            background-color: #838efe;
+            background-color: #dcdeff;
             padding: 0;
             margin: 0;
         }
@@ -38,7 +38,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="/index.jsp">
+    <a class="navbar-brand" href="/home">
         <img src="./image/logo.png" height="80" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
 </nav>
@@ -112,7 +112,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Modal update</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

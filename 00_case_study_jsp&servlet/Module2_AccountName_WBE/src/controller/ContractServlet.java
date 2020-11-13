@@ -48,6 +48,8 @@ public class ContractServlet extends HttpServlet {
     }
 
     private void createContract(HttpServletRequest request, HttpServletResponse response) {
+//        String attachService = request.getParameter("box");
+//        System.out.println(attachService);
         boolean flag = true;
         String message = "";
         int id = 0;

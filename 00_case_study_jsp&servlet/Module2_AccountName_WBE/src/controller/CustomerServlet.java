@@ -66,13 +66,18 @@ public class CustomerServlet extends HttpServlet {
 
     private void createCustomer(HttpServletRequest request, HttpServletResponse response) {
         boolean flag = true;
-        String message = "";
+        String messageId = null;
+        String messageBirthday = null;
+        String messageIdCard = null;
+        String messagePhone = null;
+        String messageEmail = null;
+
         String id = null;
         try {
             id = request.getParameter("id");
             Validate.regexCustomerId(id);
         } catch (IdException e) {
-            message = e.getMessage() + " <br> ";
+            messageId = e.getMessage();
             flag = false;
         }
         String name = request.getParameter("name");
@@ -81,7 +86,7 @@ public class CustomerServlet extends HttpServlet {
             birthday = request.getParameter("birthday");
             Validate.regexDate(birthday);
         } catch (DateException e) {
-            message += e.getMessage() + " <br> ";
+            messageBirthday = e.getMessage();
             flag = false;
         }
         String gender = request.getParameter("gender");
@@ -90,7 +95,7 @@ public class CustomerServlet extends HttpServlet {
             idCard = request.getParameter("idCard");
             Validate.regexIdCard(idCard);
         } catch (IdCardException e) {
-            message += e.getMessage() + " <br> ";
+            messageIdCard = e.getMessage();
             flag = false;
         }
         String phoneNumber = null;
@@ -98,7 +103,7 @@ public class CustomerServlet extends HttpServlet {
             phoneNumber = request.getParameter("phone");
             Validate.regexPhone(phoneNumber);
         } catch (NumberPhoneException e) {
-            message += e.getMessage() + " <br> ";
+            messagePhone = e.getMessage();
             flag = false;
         }
         String email = null;
@@ -106,13 +111,18 @@ public class CustomerServlet extends HttpServlet {
             email = request.getParameter("email");
             Validate.regexEmail(email);
         } catch (EmailException e) {
-            message += e.getMessage() + " <br> ";
+            messageEmail = e.getMessage();
+            flag = false;
         }
         String address = request.getParameter("address");
         String customerType = request.getParameter("customerType");
 
         if (!flag) {
-            request.setAttribute("message", message);
+            request.setAttribute("messageId", messageId);
+            request.setAttribute("messageBirthday", messageBirthday);
+            request.setAttribute("messageIdCard", messageIdCard);
+            request.setAttribute("messagePhone", messagePhone);
+            request.setAttribute("messageEmail", messageEmail);
             createJSP(request, response);
         }
 

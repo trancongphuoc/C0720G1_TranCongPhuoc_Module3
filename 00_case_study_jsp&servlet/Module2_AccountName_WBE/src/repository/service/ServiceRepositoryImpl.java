@@ -14,15 +14,15 @@ import java.util.List;
 public class ServiceRepositoryImpl implements ServiceRepository {
     private static final String SELECT_ALL_SERVICE = "SELECT service_id," +
             " service_name," +
-            "service_area," +
+            " service_area," +
             " service_cost," +
             " service_max_people," +
             " standard_room, description," +
             " pool_area, number_of_floor," +
             " service_type_name," +
             " rent_type_name FROM service " +
-            "JOIN service_type on service.service_type_id = service_type.service_type_id " +
-            "JOIN rent_type on service.rent_type_id = rent_type.rent_type_id;";
+            " JOIN service_type on service.service_type_id = service_type.service_type_id " +
+            " JOIN rent_type on service.rent_type_id = rent_type.rent_type_id;";
 
     private static final String INSERT_SERVICE = "INSERT INTO service VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 

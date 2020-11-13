@@ -24,7 +24,7 @@
 
     <style>
         .navbar {
-            background-color: #838efe;
+            background-color: #dcdeff;
             padding: 0;
             margin: 0;
         }
@@ -37,26 +37,29 @@
 </head>
 <body>
 <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="/index.jsp">
+    <a class="navbar-brand" href="/home">
         <img src="./image/logo.png" height="80" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
 </nav>
-
 <div class="container mt-4">
     <h1 class="text-center">Create customer</h1>
     <form action="/customers" method="post">
+        <small style="margin-left: 16%; font-size: 100%; color: red"><c:if test="${messageId != null}">${messageId}</c:if></small>
         <div class="form-group row">
             <label class="col-2">ID </label>
             <input class="form-control col-8" type="text" name="id" value="KH-">
+
         </div>
         <div class="form-group row">
             <label class="col-2">Name </label>
             <input class="form-control col-8" type="text" name="name">
         </div>
+        <small style="margin-left: 16%; font-size: 100%; color: red"><c:if test="${messageBirthday != null}">${messageBirthday}</c:if></small>
         <div class="form-group row">
             <label class="col-2">Birthday </label>
             <input class="form-control col-8" type="date" name="birthday">
         </div>
+
         <div class="form-group row">
             <label class="col-2">Gender</label>
             <select class="col-8 form-control" name="gender">
@@ -64,18 +67,22 @@
                 <option value="1">Nữ</option>
             </select>
         </div>
+        <small style="margin-left: 16%; font-size: 100%; color: red"><c:if test="${messageIdCard != null}">${messageIdCard}</c:if></small>
         <div class="form-group row">
             <label class="col-2">ID Card </label>
             <input class="form-control col-8" type="text" name="idCard">
         </div>
+        <small style="margin-left: 16%; font-size: 100%; color: red"><c:if test="${messagePhone != null}">${messagePhone}</c:if></small>
         <div class="form-group row">
             <label class="col-2">Phone Number </label>
             <input value="(84)+" class="form-control col-8" type="text" name="phone">
         </div>
+        <small style="margin-left: 16%; font-size: 100%; color: red"><c:if test="${messageEmail != null}">${messageEmail}</c:if></small>
         <div class="form-group row">
             <label class="col-2">Email </label>
             <input class="form-control col-8" type="text" name="email">
         </div>
+
         <div class="form-group row">
             <label class="col-2">Address </label>
             <input class="form-control col-8" type="text" name="address">
@@ -95,7 +102,6 @@
             <a class="btn btn-danger" href="/customers">Back</a>
         </div>
     </form>
-    <p style="color: red; margin-left: 16%"><c:if test="${message != null}">${message}</c:if></p>
 </div>
 </body>
 

@@ -75,7 +75,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                 } else {
                     gender = "Nữ";
                 }
-
                 String idCard = resultSet.getString("customer_id_card");
                 String phone = resultSet.getString("customer_phone");
                 String email = resultSet.getString("customer_email");

@@ -1,0 +1,18 @@
+CREATE DATABASE iNotes;
+
+USE iNotes;
+
+CREATE TABLE note_type(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+description VARCHAR(200)
+);
+
+CREATE TABLE note(
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(100),
+content VARCHAR(500),
+type_id INT,
+CONSTRAINT note_note_type FOREIGN KEY (type_id) REFERENCES note_type(id) ON DELETE CASCADE
+);
+

@@ -55,6 +55,7 @@
         <tbody>
         <c:forEach items="${productList}" var="product">
             <tr>
+                <td></td>
                 <td>${product.id}</td>
                 <td><a href="products?action=see&id=${product.id}">${product.name}</a></td>
                 <td>${product.price}</td>
@@ -226,8 +227,5 @@
         document.getElementById("deleteId").value = id;
     }
 
-    $(function () {
-        window.pagObj = $('#pagination').twbsPagination()
-    })
 </script>
 </html>

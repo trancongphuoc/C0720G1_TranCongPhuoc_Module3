@@ -23,7 +23,7 @@
             crossorigin="anonymous"></script>
     <style>
         .navbar {
-            background-color: #838efe;
+            background-color: #dcdeff;
             padding: 0;
             margin: 0;
         }
@@ -36,7 +36,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="/index.jsp">
+    <a class="navbar-brand" href="/home">
         <img src="./image/logo.png" height="80" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
 </nav>
