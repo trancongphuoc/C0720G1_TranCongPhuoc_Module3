@@ -1,6 +1,8 @@
 package controller;
 
 import common.*;
+import db.customer_type.CustomerTypeService;
+import db.customer_type.CustomerTypeServiceImpl;
 import model.Customer;
 import db.customer.CustomerService;
 import db.customer.CustomerServiceImpl;
@@ -17,8 +19,12 @@ import java.util.List;
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customers")
 public class CustomerServlet extends HttpServlet {
     CustomerService customerService = new CustomerServiceImpl();
+    CustomerTypeService customerTypeService = new CustomerTypeServiceImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action");
 
         if (action == null) {
@@ -81,6 +87,7 @@ public class CustomerServlet extends HttpServlet {
             flag = false;
         }
         String name = request.getParameter("name");
+        System.out.println(name);
         String birthday = null;
         try {
             birthday = request.getParameter("birthday");
@@ -118,12 +125,14 @@ public class CustomerServlet extends HttpServlet {
         String customerType = request.getParameter("customerType");
 
         if (!flag) {
+
             request.setAttribute("messageId", messageId);
             request.setAttribute("messageBirthday", messageBirthday);
             request.setAttribute("messageIdCard", messageIdCard);
             request.setAttribute("messagePhone", messagePhone);
             request.setAttribute("messageEmail", messageEmail);
             createJSP(request, response);
+            return;
         }
 
         Customer customer = new Customer(id, name, birthday, idCard, phoneNumber, email, address, gender, customerType);
@@ -131,6 +140,9 @@ public class CustomerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action");
 
         if (action == null) {
@@ -165,6 +177,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void createJSP(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("customerTypeList", customerTypeService.selectAllCustomerType());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/create.jsp");
         try {
             requestDispatcher.forward(request, response);
@@ -176,14 +189,16 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) {
+
         int page = 1;
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
         List<Customer> customerList = customerService.selectAllCustomer(page, 5);
+
         double countCustomer = customerService.countCustomer();
         double totalPage = Math.ceil(countCustomer / 5);
-
+        request.setAttribute("customerTypeList", customerTypeService.selectAllCustomerType());
         request.setAttribute("customerList", customerList);
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPage", totalPage);

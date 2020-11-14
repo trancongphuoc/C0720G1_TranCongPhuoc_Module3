@@ -154,11 +154,9 @@
                     <div class="form-group row">
                         <label class="col-4">Customer Type</label>
                         <select class="col-8 form-control" name="customerType" id="updateCustomerType">
-                            <option value="1">Member</option>
-                            <option value="2">Sliver</option>
-                            <option value="3">Gold</option>
-                            <option value="4">Platinum</option>
-                            <option value="5">Diamond</option>
+                            <c:forEach items="${customerTypeList}" var="customerType">
+                                <option value="${customerType.id}">${customerType.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -213,23 +211,31 @@
         document.getElementById("updatePhone").value = phone;
         document.getElementById("updateEmail").value = email;
         document.getElementById("updateAddress").value = address;
-        switch (customerType) {
-            case "Member":
-                customerType = 1;
-                break;
-            case "Sliver":
-                customerType = 2;
-                break;
-            case "Gold":
-                customerType = 3;
-                break;
-            case "Platinum":
-                customerType = 4;
-                break;
-            case "Diamond":
-                customerType = 5;
-                break;
+        // switch (customerType) {
+        //     case "Member":
+        //         customerType = 1;
+        //         break;
+        //     case "Sliver":
+        //         customerType = 2;
+        //         break;
+        //     case "Gold":
+        //         customerType = 3;
+        //         break;
+        //     case "Platinum":
+        //         customerType = 4;
+        //         break;
+        //     case "Diamond":
+        //         customerType = 5;
+        //         break;
+        // }
+
+        for (let i = 0; i < ${customerTypeList.size()} ; i++ ) {
+            if (customerType === ${customerTypeList.get(i).name}) {
+                alert(${customerTypeList.get(i).name});
+                customerType = ${customerTypeList.get(i).id};
+            }
         }
+
         document.getElementById("updateCustomerType").value = customerType;
     }
 

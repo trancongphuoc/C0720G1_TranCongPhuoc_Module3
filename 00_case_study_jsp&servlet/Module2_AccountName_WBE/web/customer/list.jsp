@@ -154,11 +154,9 @@
                     <div class="form-group row">
                         <label class="col-4">Customer Type</label>
                         <select class="col-8 form-control" name="customerType" id="updateCustomerType">
-                            <option value="1">Member</option>
-                            <option value="2">Sliver</option>
-                            <option value="3">Gold</option>
-                            <option value="4">Platinum</option>
-                            <option value="5">Diamond</option>
+                            <c:forEach items="${customerTypeList}" var="customerType">
+                                <option value="${customerType.id}" >${customerType.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -230,6 +228,7 @@
                 customerType = 5;
                 break;
         }
+
         document.getElementById("updateCustomerType").value = customerType;
     }
 

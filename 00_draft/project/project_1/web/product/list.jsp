@@ -76,9 +76,7 @@
             <c:if test="${currentPage != 1}">
                 <li class="page-item"><a class="page-link" href="products?page=${currentPage-1}">Previous</a></li>
             </c:if>
-<%--            <c:forEach begin="1" end="${noOfPage}" var="i">--%>
-<%--                <li class="page-item"><a id="${i}" class="page-link active" href="products?page=${i}">${i}</a></li>--%>
-<%--            </c:forEach>--%>
+
             <c:if test="${currentPage == 1}">
                 <li class="page-item active"><a id="${i}" class="page-link active" href="products?page=${currentPage}">${currentPage}</a></li>
                 <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage + 1}">${currentPage + 1}</a></li>
