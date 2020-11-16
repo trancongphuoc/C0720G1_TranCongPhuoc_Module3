@@ -155,7 +155,7 @@
                         <label class="col-4">Customer Type</label>
                         <select class="col-8 form-control" name="customerType" id="updateCustomerType">
                             <c:forEach items="${customerTypeList}" var="customerType">
-                                <option value="${customerType.id}">${customerType.name}</option>
+                                <option value="${customerType.id}" >${customerType.name}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -211,29 +211,22 @@
         document.getElementById("updatePhone").value = phone;
         document.getElementById("updateEmail").value = email;
         document.getElementById("updateAddress").value = address;
-        // switch (customerType) {
-        //     case "Member":
-        //         customerType = 1;
-        //         break;
-        //     case "Sliver":
-        //         customerType = 2;
-        //         break;
-        //     case "Gold":
-        //         customerType = 3;
-        //         break;
-        //     case "Platinum":
-        //         customerType = 4;
-        //         break;
-        //     case "Diamond":
-        //         customerType = 5;
-        //         break;
-        // }
-
-        for (let i = 0; i < ${customerTypeList.size()} ; i++ ) {
-            if (customerType === ${customerTypeList.get(i).name}) {
-                alert(${customerTypeList.get(i).name});
-                customerType = ${customerTypeList.get(i).id};
-            }
+        switch (customerType) {
+            case "Member":
+                customerType = 1;
+                break;
+            case "Sliver":
+                customerType = 2;
+                break;
+            case "Gold":
+                customerType = 3;
+                break;
+            case "Platinum":
+                customerType = 4;
+                break;
+            case "Diamond":
+                customerType = 5;
+                break;
         }
 
         document.getElementById("updateCustomerType").value = customerType;

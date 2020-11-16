@@ -1,8 +1,8 @@
 package common;
 
 import model.Book;
-import service.BookService;
-import service.BookServiceImpl;
+import service.book.BookService;
+import service.book.BookServiceImpl;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +26,7 @@ public class Validate {
         pattern = Pattern.compile(REGEX_NAME);
         matcher = pattern.matcher(name);
 
-        if(!matcher.matches()) throw new NameFormatException("ERROR: NameFormatException!!!");
+        if(!matcher.find()) throw new NameFormatException("ERROR: NameFormatException!!!");
     }
 
     public static void regexCost(double cost) throws NumberException {

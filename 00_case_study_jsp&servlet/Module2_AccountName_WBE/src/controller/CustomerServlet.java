@@ -48,6 +48,7 @@ public class CustomerServlet extends HttpServlet {
                 break;
         }
 
+
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
@@ -125,18 +126,22 @@ public class CustomerServlet extends HttpServlet {
         String customerType = request.getParameter("customerType");
 
         if (!flag) {
-
             request.setAttribute("messageId", messageId);
             request.setAttribute("messageBirthday", messageBirthday);
             request.setAttribute("messageIdCard", messageIdCard);
             request.setAttribute("messagePhone", messagePhone);
             request.setAttribute("messageEmail", messageEmail);
+
             createJSP(request, response);
-            return;
+
+        } else {
+
+            Customer customer = new Customer(id, name, birthday, idCard, phoneNumber, email, address, gender, customerType);
+            customerService.insertCustomer(customer);
+
         }
 
-        Customer customer = new Customer(id, name, birthday, idCard, phoneNumber, email, address, gender, customerType);
-        customerService.insertCustomer(customer);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -169,9 +174,7 @@ public class CustomerServlet extends HttpServlet {
 
         try {
             requestDispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -181,9 +184,7 @@ public class CustomerServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/create.jsp");
         try {
             requestDispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

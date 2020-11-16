@@ -73,10 +73,11 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <c:if test="${currentPage != 1}">
+            <c:if test="${currentPage > 1}">
                 <li class="page-item"><a class="page-link" href="products?page=${currentPage-1}">Previous</a></li>
             </c:if>
 
+            <c:if test="${noOfPage >= 3}">
             <c:if test="${currentPage == 1}">
                 <li class="page-item active"><a id="${i}" class="page-link active" href="products?page=${currentPage}">${currentPage}</a></li>
                 <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage + 1}">${currentPage + 1}</a></li>
@@ -94,8 +95,9 @@
                 <li class="page-item"><a id="${i}" class="page-link" href="products?page=${currentPage - 1}">${currentPage - 1}</a></li>
                 <li class="page-item active"><a id="${i}" class="page-link active" href="products?page=${currentPage}">${currentPage}</a></li>
             </c:if>
+            </c:if>
 
-            <c:if test="${currentPage != noOfPage}">
+            <c:if test="${currentPage < noOfPage}">
                 <li class="page-item"><a class="page-link" href="products?page=${currentPage + 1}">Next</a></li>
             </c:if>
 

@@ -4,9 +4,15 @@ import common.DuplicateIdException;
 import common.NameFormatException;
 import common.NumberException;
 import common.Validate;
-import model.Author;
 import model.Book;
-import service.*;
+import service.author.AuthorService;
+import service.author.AuthorServiceImpl;
+import service.book.BookService;
+import service.book.BookServiceImpl;
+import service.category.CategoryService;
+import service.category.CategoryServiceImpl;
+import service.publisher.PublisherService;
+import service.publisher.PublisherServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,8 +58,6 @@ public class BookServlet extends HttpServlet {
     }
 
     private void updateBook(HttpServletRequest request, HttpServletResponse response) {
-        String messageId = null;
-        String messageName = null;
         String messageCost = null;
 
         boolean flag = true;
@@ -89,8 +92,15 @@ public class BookServlet extends HttpServlet {
         int publisherId = Integer.parseInt(request.getParameter("publisherId"));
 
         if (!flag) {
+            request.setAttribute("flag", false);
+            request.setAttribute("id",id);
+            request.setAttribute("name",name);
+            request.setAttribute("cost",cost);
+            request.setAttribute("description",description);
+            request.setAttribute("categoryId",categoryId);
+            request.setAttribute("authorId",authorId);
+            request.setAttribute("publisherId",publisherId);
             request.setAttribute("message", "Update failed");
-//            request.setAttribute("messageName", messageName);
             request.setAttribute("messageCost", messageCost);
 
             return;

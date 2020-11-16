@@ -28,7 +28,7 @@
 <h1 class="text-center mb-5">Create New Book</h1>
 <div class="container">
     <form method="post" action="/books">
-        <small style="color: red; margin-left: 10%; font-size: 100%"><c:if test="${messageId != ''}">${messageId}</c:if></small>
+        <small style="color: red; margin-left: 10%; font-size: 100%"><c:if test="${messageId != null}">${messageId}</c:if></small>
         <div class="form-group row">
             <label style="width: 100px" class="col-form-label">ID</label>
             <input type="text" class="form-control col-8" name="id">
