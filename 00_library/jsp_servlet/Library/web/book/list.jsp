@@ -77,22 +77,22 @@
             </thead>
             <tbody>
 
-            <%--            <c:forEach items="${bookList}" var="book">--%>
-            <%--                <tr>--%>
-            <%--                    <td>${book.id}</td>--%>
-            <%--                    <td>${book.name}</td>--%>
-            <%--                    <td>${book.cost}</td>--%>
-            <%--                    <td>${book.description}</td>--%>
-            <%--                    <td>${categoryList.get(book.categoryId)}</td>--%>
-            <%--                    <td>${authorList.get(book.authorId)}</td>--%>
-            <%--                    <td>${publisherList.get(book.publisherId)}</td>--%>
-            <%--                    <td><a class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdate"--%>
-            <%--                           onclick="onUpdate(${book.id},'${book.name}',${book.cost},'${book.description}',${book.categoryId}, ${book.authorId}, ${book.publisherId})">Update</a>--%>
-            <%--                    </td>--%>
-            <%--                    <td><a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete"--%>
-            <%--                           onclick="onDelete(${book.id})">Delete</a></td>--%>
-            <%--                </tr>--%>
-            <%--            </c:forEach>--%>
+                        <c:forEach items="${bookList}" var="book">
+                            <tr>
+                                <td>${book.id}</td>
+                                <td>${book.name}</td>
+                                <td>${book.cost}</td>
+                                <td>${book.description}</td>
+                                <td>${categoryList.get(book.categoryId)}</td>
+                                <td>${authorList.get(book.authorId)}</td>
+                                <td>${publisherList.get(book.publisherId)}</td>
+                                <td><a class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdate"
+                                       onclick="onUpdate(${book.id},'${book.name}',${book.cost},'${book.description}',${book.categoryId}, ${book.authorId}, ${book.publisherId})">Update</a>
+                                </td>
+                                <td><a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete"
+                                       onclick="onDelete(${book.id})">Delete</a></td>
+                            </tr>
+                        </c:forEach>
 
             <c:forEach items="${bookList}" var="book">
                 <form action="/books" method="post">
@@ -149,6 +149,7 @@
                         <td><a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete"
                                onclick="onDelete(${book.id})">Delete</a></td>
                     </tr>
+
                 </form>
             </c:forEach>
 
@@ -328,23 +329,12 @@
     }
 
     function onSet(id) {
+        $(".setInput" + id).show();
+        $(".setLabel" + id).hide();
 
-        // document.getElementsByClassName('setInput' + id)[0].style.display = "block";
-        document.getElementsByClassName('setInput' + id)[1].style.display = "block";
-        document.getElementsByClassName('setInput' + id)[2].style.display = "block";
-        document.getElementsByClassName('setInput' + id)[3].style.display = "block";
-        document.getElementsByClassName('setInput' + id)[4].style.display = "block";
-        document.getElementsByClassName('setInput' + id)[5].style.display = "block";
-        document.getElementsByClassName('setInput' + id)[6].style.display = "block";
-        document.getElementById("setButton" + id + "a").style.display = 'none';
-        document.getElementById("setButton" + id + "b").style.display = "block";
-        // document.getElementsByClassName('setLabel' + id)[0].style.display = "none";
-        document.getElementsByClassName('setLabel' + id)[1].style.display = "none";
-        document.getElementsByClassName('setLabel' + id)[2].style.display = "none";
-        document.getElementsByClassName('setLabel' + id)[3].style.display = "none";
-        document.getElementsByClassName('setLabel' + id)[4].style.display = "none";
-        document.getElementsByClassName('setLabel' + id)[5].style.display = "none";
-        document.getElementsByClassName('setLabel' + id)[6].style.display = "none";
+        $("#setButton"+id+"a").hide();
+        $("#setButton"+id+"b").show();
+
     }
 
     $(document).ready(function () {
@@ -361,24 +351,6 @@
     });
 
 
-    <%--$( window ).on( "load", function() {--%>
-    <%--    if (${messageCost != null}) {--%>
-    <%--        &lt;%&ndash;document.getElementById("updateId").value = ${id};&ndash;%&gt;--%>
-    <%--        &lt;%&ndash;document.getElementById("updateName").value = ${name};&ndash;%&gt;--%>
-    <%--        &lt;%&ndash;document.getElementById("updateCost").value = ${cost};&ndash;%&gt;--%>
-    <%--        &lt;%&ndash;document.getElementById("updateDescription").value = ${description};&ndash;%&gt;--%>
-    <%--        &lt;%&ndash;document.getElementById("updateCategoryId").value = ${categoryId};&ndash;%&gt;--%>
-    <%--        &lt;%&ndash;document.getElementById("updateAuthorId").value = ${authorId};&ndash;%&gt;--%>
-    <%--        &lt;%&ndash;document.getElementById("updatePublisherId").value = ${publisherId};&ndash;%&gt;--%>
-
-    <%--        $('#modalUpdate').modal('show');--%>
-    <%--    }--%>
-    <%--});--%>
-
-    function onA(id) {
-        document.getElementsByClassName('setInput' + id)[1].style.display = "block";
-        document.getElementsByClassName('setLabel' + id)[1].style.display = "none";
-    }
 </script>
 </body>
 </html>
