@@ -13,17 +13,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"--%>
-    <%--          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">--%>
-    <%--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"--%>
-    <%--            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"--%>
-    <%--            crossorigin="anonymous"></script>--%>
-    <%--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"--%>
-    <%--            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"--%>
-    <%--            crossorigin="anonymous"></script>--%>
-    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"--%>
-    <%--            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"--%>
-    <%--            crossorigin="anonymous"></script>--%>
+
 
     <link rel="stylesheet" href="../css/bootstrap.css">
 
@@ -77,22 +67,22 @@
             </thead>
             <tbody>
 
-                        <c:forEach items="${bookList}" var="book">
-                            <tr>
-                                <td>${book.id}</td>
-                                <td>${book.name}</td>
-                                <td>${book.cost}</td>
-                                <td>${book.description}</td>
-                                <td>${categoryList.get(book.categoryId)}</td>
-                                <td>${authorList.get(book.authorId)}</td>
-                                <td>${publisherList.get(book.publisherId)}</td>
-                                <td><a class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdate"
-                                       onclick="onUpdate(${book.id},'${book.name}',${book.cost},'${book.description}',${book.categoryId}, ${book.authorId}, ${book.publisherId})">Update</a>
-                                </td>
-                                <td><a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete"
-                                       onclick="onDelete(${book.id})">Delete</a></td>
-                            </tr>
-                        </c:forEach>
+<%--                        <c:forEach items="${bookList}" var="book">--%>
+<%--                            <tr>--%>
+<%--                                <td>${book.id}</td>--%>
+<%--                                <td>${book.name}</td>--%>
+<%--                                <td>${book.cost}</td>--%>
+<%--                                <td>${book.description}</td>--%>
+<%--                                <td>${categoryList.get(book.categoryId)}</td>--%>
+<%--                                <td>${authorList.get(book.authorId)}</td>--%>
+<%--                                <td>${publisherList.get(book.publisherId)}</td>--%>
+<%--                                <td><a class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdate"--%>
+<%--                                       onclick="onUpdate(${book.id},'${book.name}',${book.cost},'${book.description}',${book.categoryId}, ${book.authorId}, ${book.publisherId})">Update</a>--%>
+<%--                                </td>--%>
+<%--                                <td><a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete"--%>
+<%--                                       onclick="onDelete(${book.id})">Delete</a></td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
 
             <c:forEach items="${bookList}" var="book">
                 <form action="/books" method="post">
@@ -102,7 +92,7 @@
                         </td>
                         <td><label class="setLabel${book.id}" ondblclick="onA(${book.id})">${book.name}</label>
                             <input name="name" type="text" style="display: none; width: 150px;"
-                                   class="setInput${book.id} form-control" value="${book.name}">
+                                   class="setInput${book.id} form-control" value="${book.name}" required pattern="^[A-Za-z]*$">
                         </td>
                         <td><label class="setLabel${book.id}">${book.cost}</label>
                             <input name="cost" type="text" style="display: none; width: 80px;"
@@ -321,10 +311,10 @@
     }
 
     function onSearch(key) {
-        document.getElementById("searchKey").href = '/books?action=search-by-category&category-id=' + key.value;
         if (key.value === "all") {
-
             document.getElementById("searchKey").href = '/books';
+        } else {
+            document.getElementById("searchKey").href = '/books?action=search-by-category&category-id=' + key.value;
         }
     }
 
@@ -337,18 +327,18 @@
 
     }
 
-    $(document).ready(function () {
-        if ('${messageCost}' != '') {
-            document.getElementById("updateId").value = '${id}';
-            document.getElementById("updateName").value = '${name}';
-            document.getElementById("updateCost").value = '${cost}';
-            document.getElementById("updateDescription").value = '${description}';
-            document.getElementById("updateCategoryId").value = '${categoryId}';
-            document.getElementById("updateAuthorId").value = '${authorId}';
-            document.getElementById("updatePublisherId").value = '${publisherId}';
-            $('#modalUpdate').modal('show');
-        }
-    });
+    <%--$(document).ready(function () {--%>
+    <%--    if ('${messageCost}' != '') {--%>
+    <%--        document.getElementById("updateId").value = '${id}';--%>
+    <%--        document.getElementById("updateName").value = '${name}';--%>
+    <%--        document.getElementById("updateCost").value = '${cost}';--%>
+    <%--        document.getElementById("updateDescription").value = '${description}';--%>
+    <%--        document.getElementById("updateCategoryId").value = '${categoryId}';--%>
+    <%--        document.getElementById("updateAuthorId").value = '${authorId}';--%>
+    <%--        document.getElementById("updatePublisherId").value = '${publisherId}';--%>
+    <%--        $('#modalUpdate').modal('show');--%>
+    <%--    }--%>
+    <%--});--%>
 
 
 </script>

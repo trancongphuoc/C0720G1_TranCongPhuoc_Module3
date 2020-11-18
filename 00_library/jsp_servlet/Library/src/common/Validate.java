@@ -15,6 +15,7 @@ public class Validate {
 
     public static void regexId(int id) throws DuplicateIdException, NumberException {
         BookService bookService = new BookServiceImpl();
+
         for (Book book: bookService.selectAllBook()) {
             if (id == book.getId()) throw new DuplicateIdException("ERROR: DuplicateIdException!!!");
         }

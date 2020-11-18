@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "BookServlet", urlPatterns = "/books")
+@WebServlet(name = "BookServlet", urlPatterns = {"/books",""})
 public class BookServlet extends HttpServlet {
     BookService bookService = new BookServiceImpl();
     CategoryService categoryService = new CategoryServiceImpl();
